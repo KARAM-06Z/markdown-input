@@ -1,7 +1,13 @@
 <template>
   <div class="card">
-    <slot name="header"></slot>
-    <slot></slot>
-    <slot name="footer"></slot>
+    <div v-if="$slots?.header" class="card-header">
+      <slot name="header"></slot>
+    </div>
+    <div class="card-body">
+      <slot></slot>
+    </div>
+    <div v-if="$slots?.footer" class="card-footer">
+      <slot name="footer"></slot>
+    </div>
   </div>
 </template>

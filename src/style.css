@@ -10,7 +10,14 @@
 }
 
 .card {
-  padding: 1rem;
   background-color: #00008a;
-  color: #fff;
+  .card-header {
+    padding: 1rem;
+    color: #fff;
+    border-bottom: 1px solid #fff;
+  }
+  .card-body {
+    padding: 1rem;
+    color: #fff;
+  }
 }
