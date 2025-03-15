@@ -1,7 +1,11 @@
 <template>
-  <label v-if="!!label" for=""> {{ label }} <span v-if="required" class="text-warning">*</span> </label>
-  <div class="d-flex">
-    <markdown-nav-tabs v-model="activeTab" />
+  <div class="form-control">
+    <label v-if="!!label" for=""> {{ label }} <span v-if="required" class="text-warning tip" aria-label="Required field">*</span> </label>
+    <div class="markdown-input">
+      <div class="d-flex">
+        <markdown-nav-tabs v-model="activeTab" />
+      </div>
+    </div>
   </div>
 </template>
 

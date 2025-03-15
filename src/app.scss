@@ -1,5 +1,10 @@
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
+* {
+  font-family: monospace;
+  font-size: 1rem;
+}
+
 .page {
   display: block;
   position: relative;
@@ -24,7 +29,79 @@
 
 .nav-tabs {
   border: none;
-  .nav-link:hover {
-    border: none;
+  .nav-item {
+    border-radius: 0.3rem;
+    .nav-link {
+      color: #fff;
+      border: none;
+    }
+    &:hover {
+      background-color: #161686;
+    }
+    &.active {
+      background-color: #07075a;
+    }
   }
+
+  &.nav-tabs-group {
+    .nav-item {
+      border-radius: 0rem;
+      min-width: 6.5rem;
+      text-align: center;
+      &:first-child {
+        border-top-left-radius: 0.3rem;
+        border-bottom-left-radius: 0.3rem;
+      }
+      &:last-child {
+        border-top-right-radius: 0.3rem;
+        border-bottom-right-radius: 0.3rem;
+      }
+    }
+  }
+}
+
+.form-control {
+  background-color: transparent;
+  border: 0;
+  color: #fff;
+}
+
+.tip {
+  position: relative;
+  &:hover {
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 115%;
+      left: 50%;
+      width: 0.3rem;
+      height: 0.3rem;
+      background-color: #07075a;
+      padding: 0.6rem;
+      pointer-events: none;
+      transform: translateX(-50%) rotate(45deg);
+      z-index: 1033;
+    }
+    &::after {
+      content: attr(aria-label);
+      position: absolute;
+      bottom: 125%;
+      left: 50%;
+      width: max-content;
+      max-width: 12rem;
+      color: #fff;
+      background-color: #07075a;
+      font-size: 0.7rem;
+      padding: 0.6rem;
+      border-radius: 0.3rem;
+      pointer-events: none;
+      transform: translateX(-50%);
+      z-index: 1033;
+    }
+  }
+}
+
+.markdown-input {
+  border: 1px solid #161686;
+  border-radius: 0.3rem;
 }

@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-tabs nav-tabs-group">
       <li class="nav-item" :class="{ active: modelValue === MarkdownInputActiveTab.Write }">
         <a v-fake-link class="nav-link" @click="model = MarkdownInputActiveTab.Write"> Write </a>
       </li>
