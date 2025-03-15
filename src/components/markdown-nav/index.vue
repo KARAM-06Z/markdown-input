@@ -2,10 +2,10 @@
   <nav>
     <ul class="nav nav-tabs">
       <li class="nav-item" :class="{ active: modelValue === MarkdownInputActiveTab.Write }">
-        <a class="nav-link" @click="model = MarkdownInputActiveTab.Write"> Write </a>
+        <a v-fake-link class="nav-link" @click="model = MarkdownInputActiveTab.Write"> Write </a>
       </li>
       <li class="nav-item" :class="{ active: modelValue === MarkdownInputActiveTab.Preview }">
-        <a class="nav-link" @click="model = MarkdownInputActiveTab.Preview"> Preview </a>
+        <a v-fake-link class="nav-link" @click="model = MarkdownInputActiveTab.Preview"> Preview </a>
       </li>
     </ul>
   </nav>
