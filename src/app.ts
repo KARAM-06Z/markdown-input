@@ -1,5 +1,5 @@
 import { createApp } from "vue"
-import "./style.css"
+import "./app.scss"
 import App from "./App.vue"
 import { fakeLink } from "./directives/fake-link"
 
