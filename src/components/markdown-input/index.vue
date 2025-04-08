@@ -2,9 +2,19 @@
   <div class="form-control">
     <label v-if="!!label" for=""> {{ label }} <span v-if="required" class="text-warning tip" aria-label="Required field">*</span> </label>
     <div class="markdown-input">
-      <div class="d-flex">
+      <div class="d-flex justify-content-between border-bottom">
         <markdown-nav-tabs v-model="activeTab" />
+        <div v-if="activeTab == MarkdownInputActiveTab.Write" class="d-flex">
+          <button class="btn tip" aria-label="Heading"><icon icon="heading" /></button>
+          <button class="btn tip" aria-label="Bold"><icon icon="bold" /></button>
+          <button class="btn tip" aria-label="Italic"><icon icon="italic" /></button>
+          <button class="btn tip" aria-label="Underline"><icon icon="underline" /></button>
+          <button class="btn tip" aria-label="Link"><icon icon="link" /></button>
+          <hr class="d-inline border-left my-1" />
+          <button class="btn tip" aria-label="How to use"><icon icon="circle-info" /></button>
+        </div>
       </div>
+      <textarea :placeholder></textarea>
     </div>
   </div>
 </template>
@@ -18,4 +28,5 @@ defineProps(markdownProps)
 const activeTab = ref(MarkdownInputActiveTab.Write)
 
 const MarkdownNavTabs = defineAsyncComponent(() => import("../markdown-nav/index.vue"))
+const Icon = defineAsyncComponent(() => import("../icon/index.vue"))
 </script>
