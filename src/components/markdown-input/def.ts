@@ -1,5 +1,6 @@
 const props = {
   label: String,
+  placeholder: String,
   required: Boolean,
 }
 
