@@ -36,11 +36,16 @@
       .nav-link {
         color: #fff;
         border: none;
+        margin: 0;
+        &:hover,
+        &:focus-visible,
+        &:focus {
+          background-color: #161686;
+          outline: none;
+          box-shadow: none;
+        }
       }
-      &:hover {
-        background-color: #161686;
-      }
-      &.active {
+      &.active .nav-link {
         background-color: #07075a;
       }
     }
@@ -67,15 +72,30 @@
   background-color: transparent;
   border: 0;
   color: #fff;
+  & .markdown-input {
+    & .markdown-header {
+      display: flex;
+      justify-content: space-between;
+      border: 1px solid #2e2e89;
+      border-bottom: none;
+      border-radius: 0.3rem 0.3rem 0rem 0rem;
+    }
 
-  & input,
-  & textarea {
-    background-color: transparent;
-    border: 0;
-    color: #fff;
-    width: 100%;
-    padding: 0.5rem;
-    resize: none;
+    & input,
+    & textarea {
+      background-color: transparent;
+      border: 1px solid #2e2e89;
+      border-radius: 0rem 0rem 0.3rem 0.3rem;
+      color: #fff;
+      width: 100%;
+      padding: 0.5rem;
+      resize: none;
+      &:focus,
+      &:active {
+        outline: none;
+        border: 1px solid #555591;
+      }
+    }
   }
 }
 
@@ -114,11 +134,6 @@
   }
 }
 
-.markdown-input {
-  border: 1px solid #2e2e89;
-  border-radius: 0.3rem;
-}
-
 svg {
   width: 14px;
   height: 14px;
@@ -132,7 +147,6 @@ svg {
   &:focus,
   &:active {
     background-color: #161686;
-    border: none;
   }
 }
 

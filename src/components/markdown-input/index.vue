@@ -1,8 +1,8 @@
 <template>
-  <div class="form-control">
+  <div class="form-control p-0">
     <label v-if="!!label" for=""> {{ label }} <span v-if="required" class="text-warning tip" aria-label="Required field">*</span> </label>
     <div class="markdown-input">
-      <div class="d-flex justify-content-between border-bottom">
+      <div class="markdown-header">
         <markdown-nav-tabs v-model="activeTab" />
         <div v-if="activeTab == MarkdownInputActiveTab.Write" class="d-flex">
           <button class="btn tip" aria-label="Heading"><icon icon="heading" /></button>
@@ -14,7 +14,7 @@
           <button class="btn tip" aria-label="How to use"><icon icon="circle-info" /></button>
         </div>
       </div>
-      <textarea :placeholder></textarea>
+      <textarea :placeholder rows="4"></textarea>
     </div>
   </div>
 </template>
