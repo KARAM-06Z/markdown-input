@@ -1,12 +1,7 @@
-import {
-  MarkdownInputDropdownModeEnum,
-  type TCustomLink,
-  type TFindFirstWhitespaceIdx,
-  type TMarkdownMark,
-  type TMarkdownMarkSelectionData,
-  type TModeAction,
-  type TSelection,
-} from "./meta"
+import { nextTick } from "vue"
+import { MarkdownInputDropdownModeEnum } from "./meta"
+import { NOOP, RandGuid, type TMap, type TOptionalProp } from "../../core/core"
+import type { TCustomLink, TFindFirstWhitespaceIdx, TMarkdownMark, TMarkdownMarkSelectionData, TModeAction, TSelection } from "./meta"
 
 const props = {
   label: String,
@@ -19,7 +14,7 @@ const MARKDOWN_SYMBOLS = {
   bold: "**",
   italic: "//",
   underline: "__",
-} as THashMap<string>
+} as TMap<string>
 
 const MARKDOWN_SEARCH_SYMBOLS = {
   header: "#",
@@ -28,13 +23,13 @@ const MARKDOWN_SEARCH_SYMBOLS = {
   underline: "_",
   anchorOpen: "[",
   anchorClose: "]",
-} as THashMap<string>
+} as TMap<string>
 
 const MARKDOWN_SYMBOLS_TAG = {
   "*": "strong",
   "/": "em",
   _: "ins",
-} as THashMap<string>
+} as TMap<string>
 
 const regexMap = {
   paragraphNewLineSplit: /(?<=\n)\s*\n/gm,
@@ -143,9 +138,9 @@ const getInputCaretPosition = (e: any) => {
   const mirrorDiv = mirrorDivElement ? mirrorDivElement : createMirrorDiv(tagName, inputWrapper)
   if (!mirrorDiv) return
 
-  const isFirefox = !((window as THashMap)?.["mozInnerScreenX"] == null)
-  const style = mirrorDiv.style as THashMap
-  const computedStyle = getComputedStyle(e) as THashMap
+  const isFirefox = !((window as TMap)?.["mozInnerScreenX"] == null)
+  const style = mirrorDiv.style as TMap
+  const computedStyle = getComputedStyle(e) as TMap
   style.whiteSpace = "pre-wrap"
   style.position = "absolute"
   style.visibility = "hidden"
@@ -250,7 +245,7 @@ const headerMark = (selectionData: TMarkdownMarkSelectionData) => {
 }
 
 const simpleMark = (selectionData: TMarkdownMarkSelectionData, type: TMarkdownMark) => {
-  const tagMatch = selectionData.selectionTrim.match((regexMap as THashMap)[`${type}MarkMatch`])
+  const tagMatch = selectionData.selectionTrim.match((regexMap as TMap)[`${type}MarkMatch`])
   if (!!tagMatch) selectionData.paragraphDivision.tagText = `${selectionData.preWhiteSpace}${tagMatch?.[2]}${selectionData.postWhiteSpace}`
   else
     selectionData.paragraphDivision.tagText = `${selectionData.preWhiteSpace}${MARKDOWN_SYMBOLS[type]}${selectionData.selectionTrim}${MARKDOWN_SYMBOLS[type]}${selectionData.postWhiteSpace}`
@@ -268,7 +263,7 @@ const simpleMark = (selectionData: TMarkdownMarkSelectionData, type: TMarkdownMa
 const clickAction = (el: Element, clickActions?: TModeAction) => {
   try {
     const data = JSON.parse(el?.getAttribute("data")!)
-    ;(clickActions as THashMap)[(MarkdownInputDropdownModeEnum as THashMap)[el.getAttribute("type") as string].toLowerCase()]({ el, data })
+    ;(clickActions as TMap)[(MarkdownInputDropdownModeEnum as TMap)[el.getAttribute("type") as string].toLowerCase()]({ el, data })
   } catch (e) {
     NOOP()
   }
@@ -286,11 +281,11 @@ const prepareCustomLinksEvents = async (clickActions?: TModeAction) => {
 const constructCustomLink = (anchorMatch: RegExpMatchArray) =>
   `<a  type='${
     anchorMatch[1] == "@" ? MarkdownInputDropdownModeEnum.Mention : MarkdownInputDropdownModeEnum.Tag
-  }'  class='markdown-custom-link' id='markdown-custom-link-${uid()}' data='${anchorMatch[3]}' href='javascript:void(0)'>${anchorMatch[1]}${
-    anchorMatch[2]
-  }</a>`
+  }'  class='markdown-custom-link' id='markdown-custom-link-${RandGuid()}' data='${anchorMatch[3]}' href='javascript:void(0)'>${
+    anchorMatch[1]
+  }${anchorMatch[2]}</a>`
 
-const useMarkdownParse = (text: string, skipHeaders = false, skipEvents = false, clickActions?: TModeAction): TOptional<string> => {
+const useMarkdownParse = (text: string, skipHeaders = false, skipEvents = false, clickActions?: TModeAction): TOptionalProp<string> => {
   if (!text) return
   const paragraphs = text.split(regexMap.paragraphNewLineSplit)
   if (paragraphs.length > 1) {

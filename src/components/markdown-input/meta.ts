@@ -1,3 +1,5 @@
+import type { TOptionalProp } from "../../core/core"
+
 enum MarkdownInputActiveTab {
   Write,
   Preview,
@@ -10,11 +12,11 @@ enum MarkdownInputDropdownModeEnum {
 
 type TMarkdownMark = "link" | "custom-link" | "header" | "bold" | "italic" | "underline" | "ol" | "ul"
 type TSelection = { start: number; end: number }
-type TFindFirstWhitespaceIdx = { text: string; idx?: number; reverse?: TOptional<boolean>; byLine?: TOptional<boolean> }
+type TFindFirstWhitespaceIdx = { text: string; idx?: number; reverse?: TOptionalProp<boolean>; byLine?: TOptionalProp<boolean> }
 type TMarkdownInputDropdown = {
   model: boolean
-  mode: TOptional<MarkdownInputDropdownModeEnum>
-  query: TOptional<string>
+  mode: TOptionalProp<MarkdownInputDropdownModeEnum>
+  query: TOptionalProp<string>
 }
 type TMarkdownMarkSelectionData = {
   paragraphDivision: { preTagText: string; tagText: string; postTagText: string }
@@ -30,22 +32,22 @@ type TCustomLink = {
 }
 type TCustomLinkArgs = { el: Element; data: any }
 type TModeAction = { mention?: (args: TCustomLinkArgs) => void; tag?: (args: TCustomLinkArgs) => void }
-type TMarkdownDropdownProps = Omit<TDropdownProps, "modelValue" | "resolveTrigger" | "teleport">
-type TMarkdownCustomKeyMapper = TKeyMapper & { stringify?: string[] }
-type TCustomMarkdownDropdownProps = TMarkdownDropdownProps & {
-  mention: {
-    promise: (filter: any) => Promise<any>
-    keyMapper?: TMarkdownCustomKeyMapper
-    initialOffset?: number
-    click?: (args: TCustomLinkArgs) => void
-  }
-  tag: {
-    promise: (filter: any) => Promise<any>
-    keyMapper?: TMarkdownCustomKeyMapper
-    initialOffset?: number
-    click?: (args: TCustomLinkArgs) => void
-  }
-}
+// type TMarkdownDropdownProps = Omit<TDropdownProps, "modelValue" | "resolveTrigger" | "teleport">
+// type TMarkdownCustomKeyMapper = TKeyMapper & { stringify?: string[] }
+// type TCustomMarkdownDropdownProps = TMarkdownDropdownProps & {
+//   mention: {
+//     promise: (filter: any) => Promise<any>
+//     keyMapper?: TMarkdownCustomKeyMapper
+//     initialOffset?: number
+//     click?: (args: TCustomLinkArgs) => void
+//   }
+//   tag: {
+//     promise: (filter: any) => Promise<any>
+//     keyMapper?: TMarkdownCustomKeyMapper
+//     initialOffset?: number
+//     click?: (args: TCustomLinkArgs) => void
+//   }
+// }
 
 export { MarkdownInputDropdownModeEnum, MarkdownInputActiveTab }
 export type {
@@ -54,9 +56,9 @@ export type {
   TFindFirstWhitespaceIdx,
   TMarkdownInputDropdown,
   TCustomLink,
-  TCustomMarkdownDropdownProps,
+  // TCustomMarkdownDropdownProps,
+  // TMarkdownCustomKeyMapper,
   TMarkdownMarkSelectionData,
-  TMarkdownCustomKeyMapper,
   TCustomLinkArgs,
   TModeAction,
 }
