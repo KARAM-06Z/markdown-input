@@ -21,6 +21,7 @@
 </template>
 
 <script lang="ts" setup>
+import { TestModel } from "./model"
 import { MarkdownInputActiveTab } from "./meta"
 import { defineAsyncComponent, ref, type Ref } from "vue"
 import { props as markdownProps, getHighlightedTextIdx, updateHighlightedText, useMarkdownParse } from "./def"
@@ -28,7 +29,7 @@ import type { TMarkdownMark } from "./meta"
 
 defineProps(markdownProps)
 const activeTab = ref(MarkdownInputActiveTab.Write),
-  model = ref(""),
+  model = ref(TestModel),
   textareaRef = ref() as Ref<HTMLTextAreaElement>
 
 const mark = async (type: TMarkdownMark /**, customLinkData?: any*/) => {
