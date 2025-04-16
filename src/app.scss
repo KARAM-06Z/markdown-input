@@ -83,6 +83,7 @@
 
     & input,
     & textarea {
+      display: block;
       background-color: transparent;
       border: 1px solid #2e2e89;
       border-radius: 0rem 0rem 0.3rem 0.3rem;
@@ -95,6 +96,16 @@
         outline: none;
         border: 1px solid #555591;
       }
+    }
+
+    & .markdown-preview {
+      background-color: transparent;
+      border: 1px solid #2e2e89;
+      border-radius: 0rem 0rem 0.3rem 0.3rem;
+      color: #fff;
+      width: 100%;
+      padding: 0.5rem;
+      min-height: 7.1rem;
     }
   }
 }

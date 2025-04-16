@@ -181,7 +181,7 @@ const findFirstWhitespaceIdx = ({ text, idx = 0, byLine, reverse }: TFindFirstWh
   return whitespaceIdx == -1 ? (reverse ? 0 : text.length) : whitespaceIdx
 }
 
-const getHighlightedTextIdx = ({ selectionStart, selectionEnd, value }: HTMLInputElement, byLine = false): TSelection => {
+const getHighlightedTextIdx = ({ selectionStart, selectionEnd, value }: HTMLTextAreaElement, byLine = false): TSelection => {
   if (selectionStart != selectionEnd) return { start: selectionStart!, end: selectionEnd! }
   return {
     start: findFirstWhitespaceIdx({ text: value, idx: selectionStart!, reverse: true, byLine }),
