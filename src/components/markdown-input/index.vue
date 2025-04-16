@@ -5,27 +5,47 @@
       <div class="markdown-header">
         <markdown-nav-tabs v-model="activeTab" />
         <div v-if="activeTab == MarkdownInputActiveTab.Write" class="d-flex">
-          <button class="btn tip" aria-label="Heading"><icon icon="heading" /></button>
-          <button class="btn tip" aria-label="Bold"><icon icon="bold" /></button>
-          <button class="btn tip" aria-label="Italic"><icon icon="italic" /></button>
-          <button class="btn tip" aria-label="Underline"><icon icon="underline" /></button>
-          <button class="btn tip" aria-label="Link"><icon icon="link" /></button>
+          <button class="btn tip" aria-label="Heading" @click="mark('header')"><icon icon="heading" /></button>
+          <button class="btn tip" aria-label="Bold" @click="mark('bold')"><icon icon="bold" /></button>
+          <button class="btn tip" aria-label="Italic" @click="mark('italic')"><icon icon="italic" /></button>
+          <button class="btn tip" aria-label="Underline" @click="mark('underline')"><icon icon="underline" /></button>
+          <button class="btn tip" aria-label="Link" @click="mark('link')"><icon icon="link" /></button>
           <hr class="d-inline border-left my-1" />
           <button class="btn tip" aria-label="How to use"><icon icon="circle-info" /></button>
         </div>
       </div>
-      <textarea :placeholder rows="4"></textarea>
+      <textarea v-if="activeTab == MarkdownInputActiveTab.Write" v-model="model" ref="textareaRef" :placeholder rows="4"></textarea>
+      <div v-else v-html="useMarkdownParse(model)" class="markdown-preview"></div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { defineAsyncComponent, ref } from "vue"
-import { props as markdownProps } from "./def"
 import { MarkdownInputActiveTab } from "./meta"
+import { defineAsyncComponent, ref, type Ref } from "vue"
+import { props as markdownProps, getHighlightedTextIdx, updateHighlightedText, useMarkdownParse } from "./def"
+import type { TMarkdownMark } from "./meta"
 
 defineProps(markdownProps)
-const activeTab = ref(MarkdownInputActiveTab.Write)
+const activeTab = ref(MarkdownInputActiveTab.Write),
+  model = ref(""),
+  textareaRef = ref() as Ref<HTMLTextAreaElement>
+
+const mark = async (type: TMarkdownMark /**, customLinkData?: any*/) => {
+  if (!textareaRef.value) return
+  const result = updateHighlightedText(
+    model.value,
+    type,
+    getHighlightedTextIdx(textareaRef.value, type == "ol" || type == "ul" || type == "header") /**, mapCustomLinkData(customLinkData) */
+  )
+  model.value = result.text
+
+  textareaRef.value.focus()
+  // await nextTick()
+  // textareaRef.value.setSelectionRange(result.selection.start, result.selection.end)
+
+  // if (!!customLinkData) resetDropdown()
+}
 
 const MarkdownNavTabs = defineAsyncComponent(() => import("../markdown-nav/index.vue"))
 const Icon = defineAsyncComponent(() => import("../icon/index.vue"))
