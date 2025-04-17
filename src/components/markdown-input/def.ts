@@ -290,7 +290,7 @@ const useMarkdownParse = (text: string, skipHeaders = false, skipEvents = false,
   const paragraphs = text.split(regexMap.paragraphNewLineSplit)
   if (paragraphs.length > 1) {
     prepareCustomLinksEvents(clickActions)
-    return paragraphs.reduce((p, c) => p.concat("\n").concat(useMarkdownParse(c, false, true)!), "")
+    return paragraphs.reduce((p, c, i) => p.concat(i ? "\n" : "").concat(c ? useMarkdownParse(c, false, true)! : ""), "")
   }
   let paragraph = paragraphs.first!
   let pointer = 0
@@ -373,11 +373,9 @@ const useMarkdownParse = (text: string, skipHeaders = false, skipEvents = false,
     )
     const headerIsUnderlined = tagMatchString.includes("-")
     const hashCount = headerIsUnderlined ? tagMatchString.length - 2 : tagMatchString.length - 1
-    const tag = `\n<h${hashCount} class="d-inline-block w-100 ${headerIsUnderlined ? "border-bottom" : ""}">${useMarkdownParse(
-      headerText,
-      true,
-      true
-    )}</h${hashCount}>`
+    const tag = `${!paragraph[pointer - 1] || paragraph[pointer - 1] == "\n" ? "" : "\n"}<h${hashCount} class="d-inline-block w-100 ${
+      headerIsUnderlined ? "border-bottom" : ""
+    }">${useMarkdownParse(headerText, true, true)}</h${hashCount}>`
     paragraph = paragraphDivision.preTagText.concat(tag).concat(paragraphDivision.postTagText)
     pointer = paragraphDivision.preTagText.length + tag.length
   }
