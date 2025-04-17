@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <div class="d-flex justify-content-center align-items-center h-100">
+    <div class="d-flex justify-content-center m-5">
       <card class="w-75">
         <markdown-input label="Markdown Input" placeholder="Markdown Input" required />
       </card>
