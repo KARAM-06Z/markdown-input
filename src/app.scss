@@ -89,6 +89,7 @@
       border-radius: 0rem 0rem 0.3rem 0.3rem;
       color: #fff;
       width: 100%;
+      height: calc(100vh - 12.3rem);
       padding: 0.5rem;
       resize: none;
       &:focus,
@@ -105,7 +106,8 @@
       color: #fff;
       width: 100%;
       padding: 0.5rem;
-      min-height: 7.1rem;
+      height: calc(100vh - 12.3rem);
+      overflow: auto;
       white-space: pre-wrap;
     }
   }
@@ -170,6 +172,21 @@ hr {
   opacity: 1;
 }
 
+label {
+  margin-left: 0.4rem;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 4px;
+  background-color: #161686;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #07075a;
+  border-radius: 3px;
+}
+
 .border-left {
   border-left: 1px solid #2e2e89 !important;
 }
@@ -184,4 +201,8 @@ hr {
 
 .border-bottom {
   border-bottom: 1px solid #2e2e89 !important;
+}
+
+.mnh-100 {
+  min-height: 100%;
 }

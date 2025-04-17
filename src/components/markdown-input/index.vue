@@ -14,7 +14,7 @@
           <button class="btn tip" aria-label="How to use"><icon icon="circle-info" /></button>
         </div>
       </div>
-      <textarea v-if="activeTab == MarkdownInputActiveTab.Write" v-model="model" ref="textareaRef" :placeholder rows="4"></textarea>
+      <textarea v-if="activeTab == MarkdownInputActiveTab.Write" v-model="model" ref="textareaRef" :placeholder></textarea>
       <div v-else v-html="useMarkdownParse(model)" class="markdown-preview"></div>
     </div>
   </div>
