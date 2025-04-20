@@ -1,4 +1,4 @@
-import type { TOptionalProp } from "../../core/core"
+import type { TOptionalProp } from "../../core/utils/core"
 
 enum MarkdownInputActiveTab {
   Write,
