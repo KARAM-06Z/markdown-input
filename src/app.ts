@@ -1,9 +1,7 @@
 import "./app.scss"
 import "../prototypes"
 import App from "./App.vue"
-import { createApp } from "vue"
-import { fakeLink } from "./directives/fake-link"
+import { CoreService } from "./core/models/core-service"
+import { registerService } from "./services"
 
-const app = createApp(App)
-app.mount("#app")
-app.directive("fake-link", fakeLink)
+registerService("core-service", new CoreService(App as any))

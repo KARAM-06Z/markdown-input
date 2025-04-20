@@ -1,6 +1,6 @@
 import { nextTick } from "vue"
 import { MarkdownInputDropdownModeEnum } from "./meta"
-import { NOOP, RandGuid, type TMap, type TOptionalProp } from "../../core/core"
+import { NOOP, RandGuid, type TMap, type TOptionalProp } from "../../core/utils/core"
 import type { TCustomLink, TFindFirstWhitespaceIdx, TMarkdownMark, TMarkdownMarkSelectionData, TModeAction, TSelection } from "./meta"
 
 const props = {
