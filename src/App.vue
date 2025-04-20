@@ -1,14 +1,12 @@
 <template>
-  <template v-if="appReady">
-    <div class="page">
-      <div class="d-flex justify-content-center m-5">
-        <card class="w-75">
-          <markdown-input label="Markdown Input" placeholder="Markdown Input" required />
-        </card>
-      </div>
+  <div v-if="appReady" class="page">
+    <div class="d-flex justify-content-center m-5">
+      <card class="w-75">
+        <markdown-input label="Markdown Input" placeholder="Markdown Input" required />
+      </card>
     </div>
-    <div id="app-overlay" class="app-overlay"></div>
-  </template>
+  </div>
+  <div id="app-overlay" class="app-overlay"></div>
 </template>
 
 <script lang="ts" setup>

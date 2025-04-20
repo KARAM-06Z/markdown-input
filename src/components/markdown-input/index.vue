@@ -11,7 +11,11 @@
           <button class="btn tip" aria-label="Underline" @click="mark('underline')"><icon icon="underline" /></button>
           <button class="btn tip" aria-label="Link" @click="mark('link')"><icon icon="link" /></button>
           <hr class="d-inline border-left my-1" />
-          <button class="btn tip" aria-label="How to use"><icon icon="circle-info" /></button>
+          <dropdown>
+            <template #trigger>
+              <button class="btn tip h-100" aria-label="How to use"><icon icon="circle-info" /></button>
+            </template>
+          </dropdown>
         </div>
       </div>
       <textarea v-if="activeTab == MarkdownInputActiveTab.Write" v-model="model" ref="textareaRef" :placeholder></textarea>
@@ -50,4 +54,5 @@ const mark = async (type: TMarkdownMark /**, customLinkData?: any*/) => {
 
 const MarkdownNavTabs = defineAsyncComponent(() => import("../markdown-nav/index.vue"))
 const Icon = defineAsyncComponent(() => import("../icon/index.vue"))
+const Dropdown = defineAsyncComponent(() => import("../dropdown/index.vue"))
 </script>
