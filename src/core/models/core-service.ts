@@ -1,7 +1,9 @@
 import { fakeLink } from "../../directives/fake-link"
 import { createApp, type App } from "vue"
+import { Singleton } from "../utils/singleton"
 import type { ICoreService } from "../interfaces/i-core-service"
 
+@Singleton
 class CoreService implements ICoreService {
   private _overlay!: HTMLElement
 
