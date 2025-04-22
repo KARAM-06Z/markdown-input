@@ -1,5 +1,5 @@
 <template>
-  <div v-if="appReady" class="page">
+  <div v-if="appReady" class="app-page">
     <div class="d-flex justify-content-center m-5">
       <card class="w-75">
         <markdown-input label="Markdown Input" placeholder="Markdown Input" required />

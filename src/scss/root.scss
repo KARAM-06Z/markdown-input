@@ -1,4 +1,74 @@
+@font-face {
+  font-family: "inter";
+  src: url("../../assets/Inter-VariableFont_opsz\,wght.ttf");
+}
+
+@font-face {
+  font-family: "poppins";
+  src: url("../../assets/Poppins-Medium.ttf");
+}
+
+$primary: #f1f6f9;
+$secondary: #394867;
+$dark: #212a3e;
+$dark-low-opacity: hsla(220, 31%, 19%, 0.08);
+$gray: #e3e8eb;
+$dark-gray: #dadfe2;
+
+$font-weight-light: 400;
+$font-weight-medium: 600;
+$font-weight-bold: 800;
+
 * {
-  font-family: monospace;
-  font-size: 0.95;
+  font-family: inter;
+  font-size: 0.85rem;
+  font-weight: $font-weight-light;
+  color: $secondary;
+}
+
+svg {
+  width: 12px;
+  height: 12px;
+  fill: $secondary;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "poppins";
+  font-weight: $font-weight-medium;
+}
+
+hr {
+  margin: 1rem 0;
+  border: 0;
+  border-top: 1px solid $gray;
+  opacity: 1;
+}
+
+label {
+  margin-left: 0.4rem;
+  font-weight: $font-weight-medium;
+}
+
+a {
+  font-weight: inherit;
+}
+
+strong {
+  font-weight: $font-weight-bold !important;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 4px;
+  background-color: $gray;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $secondary;
+  border-radius: 3px;
 }
