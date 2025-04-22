@@ -1,7 +1,7 @@
 {
   "name": "markdown-input",
   "private": true,
-  "version": "0.0.2",
+  "version": "0.0.21",
   "type": "module",
   "scripts": {
     "dev": "vite --open",
