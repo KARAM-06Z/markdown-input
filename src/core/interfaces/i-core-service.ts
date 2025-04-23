@@ -1,5 +1,10 @@
+import { DropdownAlignmentEnum } from "../../components/dropdown/meta"
+import { SizeEnum } from "../utils/core"
+
 interface ICoreService {
-  get getOverlay(): HTMLElement
+  dropdownShown: boolean
+  showDropdown(e: HTMLElement, alignment?: DropdownAlignmentEnum, size?: SizeEnum): void
+  hideDropdown(): void
 }
 
 export type { ICoreService }

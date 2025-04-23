@@ -1,0 +1,14 @@
+@use "./root.scss" as *;
+
+@mixin dropdown-arrow {
+  content: "";
+  position: absolute;
+  top: -0.3rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: $primary;
+  pointer-events: none;
+  border-top: 1px solid $dark-low-opacity;
+  border-left: 1px solid $dark-low-opacity;
+  z-index: 1033;
+}

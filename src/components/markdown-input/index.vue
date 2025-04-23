@@ -11,9 +11,13 @@
           <button class="btn tip" aria-label="Underline" @click="mark('underline')"><icon icon="underline" /></button>
           <button class="btn tip" aria-label="Link" @click="mark('link')"><icon icon="link" /></button>
           <hr class="d-inline border-left my-1" />
-          <dropdown>
+          <dropdown :alignment="DropdownAlignmentEnum.Right" :size="SizeEnum.LG" class="btn tip" aria-label="How to use">
             <template #trigger>
-              <button class="btn tip h-100" aria-label="How to use"><icon icon="circle-info" /></button>
+              <icon icon="circle-info" />
+            </template>
+            <template #content>
+              HOW TO USE
+              <div class="bg-warning">TEST</div>
             </template>
           </dropdown>
         </div>
@@ -26,6 +30,8 @@
 
 <script lang="ts" setup>
 import { TestModel } from "./model"
+import { SizeEnum } from "../../core/utils/core"
+import { DropdownAlignmentEnum } from "../dropdown/meta"
 import { MarkdownInputActiveTab } from "./meta"
 import { defineAsyncComponent, ref, type Ref } from "vue"
 import { props as markdownProps, getHighlightedTextIdx, updateHighlightedText, useMarkdownParse } from "./def"
