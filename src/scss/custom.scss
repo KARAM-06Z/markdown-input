@@ -1,3 +1,5 @@
+@use "./mixins.scss" as *;
+
 .app-page {
   display: block;
   position: relative;
@@ -9,15 +11,55 @@
 
 .app-overlay {
   display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
   z-index: 1032;
 
   &.show {
     display: block;
+  }
+
+  & .app-backdrop {
+    position: fixed;
+    background-color: $dark-low-opacity;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  & .dropdown {
+    position: absolute;
+    background-color: $primary;
+    border: 1px solid $dark-gray;
+    padding: 0.6rem;
+    border-radius: 0.3rem;
+    z-index: 1033;
+    &.dropdown-sm {
+      max-width: 14rem;
+    }
+    &.dropdown-md {
+      max-width: 21rem;
+    }
+    &.dropdown-lg {
+      max-width: 28rem;
+    }
+    &.align-center {
+      transform: translateX(-50%);
+      &::after {
+        @include dropdown-arrow;
+        left: 50%;
+        transform: translateX(-50%) rotate(45deg);
+      }
+    }
+    &.align-right::after {
+      @include dropdown-arrow;
+      right: 0.9rem;
+      transform: rotate(45deg);
+    }
+    &.align-left::after {
+      @include dropdown-arrow;
+      left: 0.9rem;
+      transform: rotate(45deg);
+    }
   }
 }
 
@@ -153,8 +195,7 @@
   border: none;
   border-radius: 0.3rem;
   &:hover,
-  &:focus,
-  &:active {
+  &:focus-visible {
     background-color: $gray;
   }
 }
